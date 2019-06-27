@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  permit_params :delivery_at, :client_id, :client_type, order_items_attributes: [:product_id, :quantity, :price]
+  permit_params :delivery_at, :client_id, :client_type, order_items_attributes: [:product_id, :quantity, :price, :id, :_destroy]
 
   includes :order_items
 
