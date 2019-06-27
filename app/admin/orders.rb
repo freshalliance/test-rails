@@ -1,5 +1,5 @@
 ActiveAdmin.register Order do
-  permit_params :delivery_at, :client_id, :client_type
+  permit_params :delivery_at, :client_id, :client_type, order_items_attributes: [:product_id, :quantity, :price]
 
   includes :order_items
 
@@ -20,6 +20,22 @@ ActiveAdmin.register Order do
     end
 
     actions
+  end
+
+  form do |f|
+    f.inputs do
+      f.input :client_id
+      f.input :client_type
+      f.input :delivery_at
+
+      f.has_many :order_items, allow_destroy: true do |i|
+        i.input :product
+        i.input :quantity
+        i.input :price
+      end
+    end
+
+    f.actions
   end
 
   show do

@@ -2,6 +2,9 @@ class OrderItem < ApplicationRecord
   belongs_to :product
   belongs_to :order
 
+  validates :quantity, presence: true
+  validates :price, presence: true
+
   before_save :freeze_price, unless: :price
 
   def freeze_price
