@@ -5,7 +5,7 @@ class OrderItem < ApplicationRecord
   validates :quantity, presence: true
   validates :price, presence: true
 
-  before_save :freeze_price, unless: :price
+  before_validation :freeze_price, unless: :price
 
   def freeze_price
     self.price = product.price
